@@ -14,7 +14,10 @@ class ParkingLot(val capacity: Int) {
         return Ticket()
     }
 
-    fun takeCar(ticket: Ticket): Car {
+    fun takeCar(ticket: Ticket?): Car {
+        if (ticket == null) {
+            throw InvalidTicketException()
+        }
         return cars[0]
     }
 }
