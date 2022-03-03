@@ -40,5 +40,14 @@ class ParkingLotSpec : WordSpec({
 
             assertThrows<InvalidTicketException> { parkingLot.takeCar(null) }
         }
+
+        "should_return_invalid_ticket_when_take_car_given_used_ticket"{
+            val car = Car()
+            val parkingLot = ParkingLot(10)
+            val ticket = parkingLot.parking(car)
+            parkingLot.takeCar(ticket)
+
+            assertThrows<InvalidTicketException> { parkingLot.takeCar(ticket) }
+        }
     }
 })

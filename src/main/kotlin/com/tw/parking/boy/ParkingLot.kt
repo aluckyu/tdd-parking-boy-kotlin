@@ -3,21 +3,25 @@ package com.tw.parking.boy
 import java.util.*
 
 class ParkingLot(val capacity: Int) {
-    private val cars: MutableList<Car> = ArrayList()
+    private val ticketCarMap: MutableMap<Ticket, Car> = HashMap()
 
     fun parking(car: Car): Ticket {
-        if (cars.size >= capacity) {
+        if (ticketCarMap.size >= capacity) {
             throw NoCapacityException()
         }
 
-        cars.add(car)
-        return Ticket()
+        val ticket = Ticket();
+        ticketCarMap[ticket] = car
+        return ticket
     }
 
     fun takeCar(ticket: Ticket?): Car {
         if (ticket == null) {
             throw InvalidTicketException()
         }
-        return cars[0]
+
+        val car = ticketCarMap[ticket] ?: throw InvalidTicketException()
+        ticketCarMap.remove(ticket)
+        return car;
     }
 }
