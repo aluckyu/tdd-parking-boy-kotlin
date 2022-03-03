@@ -21,5 +21,16 @@ class ParkingLotSpec : WordSpec({
 
             assertThrows<NoCapacityException> { parkingLot.parking(car) }
         }
+
+        "should_success_when_take_car_given_valid_ticket" {
+            val car = Car()
+            val parkingLot = ParkingLot(10)
+            val ticket = parkingLot.parking(car)
+
+            val takingCar = parkingLot.takeCar(ticket)
+
+            Assertions.assertNotNull(takingCar)
+            Assertions.assertEquals(car, takingCar)
+        }
     }
 })

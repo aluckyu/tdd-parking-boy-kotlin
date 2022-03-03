@@ -13,4 +13,8 @@ class ParkingLot(val capacity: Int) {
         cars.add(car)
         return Ticket()
     }
+
+    fun takeCar(ticket: Ticket): Car {
+        return cars[0]
+    }
 }
