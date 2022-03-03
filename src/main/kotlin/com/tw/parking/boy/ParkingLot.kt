@@ -10,16 +10,12 @@ class ParkingLot(val capacity: Int) {
             throw NoCapacityException()
         }
 
-        val ticket = Ticket();
+        val ticket = Ticket()
         ticketCarMap[ticket] = car
         return ticket
     }
 
     fun takeCar(ticket: Ticket?): Car {
-        if (ticket == null) {
-            throw InvalidTicketException()
-        }
-
         val car = ticketCarMap[ticket] ?: throw InvalidTicketException()
         ticketCarMap.remove(ticket)
         return car;
