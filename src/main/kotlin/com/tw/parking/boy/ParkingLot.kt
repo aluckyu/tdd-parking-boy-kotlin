@@ -18,6 +18,6 @@ class ParkingLot(val capacity: Int) {
     fun takeCar(ticket: Ticket?): Car {
         val car = ticketCarMap[ticket] ?: throw InvalidTicketException()
         ticketCarMap.remove(ticket)
-        return car;
+        return car
     }
 }
