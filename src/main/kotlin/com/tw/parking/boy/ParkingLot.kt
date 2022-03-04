@@ -6,7 +6,7 @@ class ParkingLot(val capacity: Int) {
     private val ticketCarMap: MutableMap<Ticket, Car> = HashMap()
 
     fun parking(car: Car): Ticket {
-        if (ticketCarMap.size >= capacity) {
+        if (!hasCapacity()) {
             throw NoCapacityException()
         }
 
