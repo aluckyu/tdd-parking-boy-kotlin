@@ -24,4 +24,8 @@ class ParkingLot(val capacity: Int) {
     fun hasCapacity(): Boolean {
         return ticketCarMap.size < capacity
     }
+
+    fun hasCar(ticket: Ticket?): Boolean {
+        return ticketCarMap.containsKey(ticket)
+    }
 }

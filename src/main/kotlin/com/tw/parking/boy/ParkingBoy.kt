@@ -7,4 +7,10 @@ class ParkingBoy(val parkingLots: List<ParkingLot>) {
             .map { parkingLot -> parkingLot.parking(car) }
             .orElseThrow { NoCapacityException() }
     }
+
+    fun takeCar(ticket: Ticket?): Car {
+        return parkingLots.stream().filter { parkingLot -> parkingLot.hasCar(ticket) }.findFirst()
+            .map { parkingLot -> parkingLot.takeCar(ticket) }
+            .orElse(null)
+    }
 }

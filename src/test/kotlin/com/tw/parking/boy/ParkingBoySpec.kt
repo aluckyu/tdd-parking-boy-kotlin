@@ -41,5 +41,17 @@ class ParkingBoySpec : WordSpec({
 
             assertThrows<NoCapacityException> { parkingBoy.parking(car) }
         }
+
+        "should_take_car_successfully_when_take_car_given_valid_ticket" {
+            val parkingCar = Car()
+            val parkingLots = listOf(ParkingLot(10), ParkingLot(10))
+            val parkingBoy = ParkingBoy(parkingLots)
+            val ticket = parkingBoy.parking(parkingCar)
+
+            val takingCar = parkingBoy.takeCar(ticket)
+
+            Assertions.assertNotNull(takingCar)
+            Assertions.assertEquals(parkingCar, takingCar)
+        }
     }
 })
