@@ -20,4 +20,8 @@ class ParkingLot(val capacity: Int) {
         ticketCarMap.remove(ticket)
         return car
     }
+
+    fun hasCapacity(): Boolean {
+        return ticketCarMap.size < capacity
+    }
 }
