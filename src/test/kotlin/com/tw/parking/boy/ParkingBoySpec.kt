@@ -53,5 +53,13 @@ class ParkingBoySpec : WordSpec({
             Assertions.assertNotNull(takingCar)
             Assertions.assertEquals(parkingCar, takingCar)
         }
+
+        "should_return_invalid_ticket_when_take_car_with_invalid_ticket" {
+            val parkingLots: List<ParkingLot> = listOf(ParkingLot(10), ParkingLot(10))
+            val parkingBoy = ParkingBoy(parkingLots)
+            val ticket = Ticket()
+
+            assertThrows<InvalidTicketException> { parkingBoy.takeCar(ticket) }
+        }
     }
 })

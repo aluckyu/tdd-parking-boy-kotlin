@@ -11,6 +11,6 @@ class ParkingBoy(val parkingLots: List<ParkingLot>) {
     fun takeCar(ticket: Ticket?): Car {
         return parkingLots.stream().filter { parkingLot -> parkingLot.hasCar(ticket) }.findFirst()
             .map { parkingLot -> parkingLot.takeCar(ticket) }
-            .orElse(null)
+            .orElseThrow { InvalidTicketException() }
     }
 }
