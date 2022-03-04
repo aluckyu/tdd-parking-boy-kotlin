@@ -2,6 +2,7 @@ package com.tw.parking.boy
 
 import io.kotest.core.spec.style.WordSpec
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.assertThrows
 
 class ParkingBoySpec : WordSpec({
 
@@ -31,6 +32,14 @@ class ParkingBoySpec : WordSpec({
             Assertions.assertNotNull(ticket)
             Assertions.assertEquals(car, secondParkingLot.takeCar(ticket))
 
+        }
+
+        "should_return_no_capacity_when_parking_given_manage_two_parking_lot_both_has_no_capacity" {
+            val car = Car()
+            val parkingLots = listOf(ParkingLot(0), ParkingLot(0))
+            val parkingBoy = ParkingBoy(parkingLots)
+
+            assertThrows<NoCapacityException> { parkingBoy.parking(car) }
         }
     }
 })
